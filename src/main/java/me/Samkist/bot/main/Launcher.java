@@ -6,7 +6,6 @@ import me.Samkist.bot.utils.Config;
 import net.dv8tion.jda.api.AccountType;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
-import net.dv8tion.jda.api.OnlineStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,7 +16,7 @@ public class Launcher {
     private static JDA jda;
     public static void main(String[] args) throws LoginException, IndexOutOfBoundsException
     {
-        Logger logger = LoggerFactory.getLogger("Launcher");
+        Logger logger = LoggerFactory.getLogger(Logger.class);
 
         String token = Config.getToken();
 
@@ -32,7 +31,7 @@ public class Launcher {
                 .setToken(token)
                 .addEventListeners(commandHandler)
                 .build();
-    }
+        }
 
     public static JDA getJda() {
         return jda;

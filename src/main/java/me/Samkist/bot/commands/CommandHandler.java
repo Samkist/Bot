@@ -11,9 +11,10 @@ import org.slf4j.LoggerFactory;
 import java.util.*;
 
 public class CommandHandler extends ListenerAdapter {
-    private Logger logger = LoggerFactory.getLogger("CommandHandler");
+    private Logger logger = LoggerFactory.getLogger(CommandHandler.class);
     private ArrayList<Command> commands = new ArrayList<>();
     private String prefix = Config.getPrefix();
+
 
     public CommandHandler addCommand(Command command) {
         if(!commands.contains(command))
@@ -41,22 +42,25 @@ public class CommandHandler extends ListenerAdapter {
 
     @Override
     public void onMessageReceived(@NotNull MessageReceivedEvent event) {
+        if(event.getMessage().getContentRaw().length() == 0)
+            return;
         if(!event.isFromType(ChannelType.TEXT))
             return;
-        if(!Character.toString(event.getMessage().toString().charAt(0)).equalsIgnoreCase(Config.getPrefix()))
+        if (!Character.toString(event.getMessage().getContentRaw().charAt(0)).equalsIgnoreCase(Config.getPrefix()))
             return;
-        String msg = event.getMessage().toString().substring(1);
+
+        String msg = event.getMessage().getContentRaw().substring(1);
         String command = msg.split(" ")[0];
         String[] args = new String[msg.split(" ").length-1];
         for(int i = 0; i < args.length; i++) {
             args[i] = msg.split(" ")[i+1];
         }
         try {
-            commands.stream().filter(command1 -> command1.getCommand().equals(command)).findFirst()
-                    .get().execute(args, event.getChannel(), event.getAuthor(), event.getMessage());
+            Optional<Command> result = commands.stream().filter(command1 -> command1.getCommand().equalsIgnoreCase(command)).findFirst();
+            result.ifPresent(value -> value.execute(args, event.getChannel(), event.getAuthor(), event.getMessage()));
+
         } catch(NoSuchElementException ignored) {
 
         }
-
     }
 }
