@@ -1,8 +1,6 @@
 package me.Samkist.bot.commands;
 
-import net.dv8tion.jda.api.entities.Message;
-import net.dv8tion.jda.api.entities.MessageChannel;
-import net.dv8tion.jda.api.entities.User;
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 public abstract class Command {
     public Command() {
@@ -15,5 +13,5 @@ public abstract class Command {
 
     public abstract String getUsage();
 
-    public abstract void execute(String[] args, MessageChannel channel, User author, Message message);
+    public abstract void execute(String[] args, MessageReceivedEvent event);
 }

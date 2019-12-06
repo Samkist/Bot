@@ -1,18 +1,13 @@
-package me.Samkist.bot.commands;
+package me.Samkist.bot.commands.fun;
 
-import me.Samkist.bot.main.Launcher;
-import me.Samkist.bot.utils.Config;
-import net.dv8tion.jda.api.EmbedBuilder;
+import me.Samkist.bot.commands.Command;
+import me.Samkist.bot.utils.Embeds;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.MessageChannel;
 import net.dv8tion.jda.api.entities.User;
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.awt.*;
-import java.util.Arrays;
-import java.util.Objects;
-import java.util.function.Consumer;
 
 public class Echo extends Command {
 
@@ -43,17 +38,17 @@ public class Echo extends Command {
         return usage;
     }
 
-    @Override
-    public void execute(String[] args, MessageChannel channel, User author, Message message) {
+    private void execute(String[] args, MessageChannel channel, User author, Message message) {
         StringBuilder builder = new StringBuilder();
         for(String s : args) {
             builder.append(s).append(" ");
         }
-        EmbedBuilder embedBuilder = new EmbedBuilder();
-        embedBuilder.setDescription(builder.toString());
-        embedBuilder.setColor(new Color(0, 255, 128));
-        embedBuilder.setAuthor("Echo", null, "https://cdn.discordapp.com/avatars/133231388538306560/3da005a023dd4de2332fc07d901745b8.png");
-        embedBuilder.setFooter("Discord Bot | Samkist");
-        channel.sendMessage(embedBuilder.build()).queue();
+
+        channel.sendMessage(Embeds.getDefaultEmbed(builder.toString(), "Echo").build()).queue();
+    }
+
+    @Override
+    public void execute(String[] args, MessageReceivedEvent event) {
+        execute(args, event.getChannel(), event.getAuthor(), event.getMessage());
     }
 }
