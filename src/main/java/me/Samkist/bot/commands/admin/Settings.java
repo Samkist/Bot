@@ -1,4 +1,4 @@
 package me.Samkist.bot.commands.admin;
 
-public class Serttings {
+public class Settings {
 }
