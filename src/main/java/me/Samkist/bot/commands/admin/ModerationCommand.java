@@ -6,8 +6,12 @@ import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public abstract class ModerationCommand extends Command {
+
+    private static Logger logger = LoggerFactory.getLogger(ModerationCommand.class);
 
     @Override
     public String getUsage() {
@@ -18,12 +22,6 @@ public abstract class ModerationCommand extends Command {
 
     protected abstract Permission getRequiredPermission();
 
-    protected abstract boolean punish(Guild guild, Member member);
+    protected abstract boolean punish(Guild guild, Member member, MessageReceivedEvent event, String[] args);
 
-    @Override
-    public void execute(String[] args, MessageReceivedEvent event) {
-        TextChannel channel = event.getTextChannel();
-        Guild guild = channel.getGuild();
-
-    }
 }

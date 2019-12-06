@@ -1,6 +1,7 @@
 package me.Samkist.bot.main;
 
 import me.Samkist.bot.commands.CommandHandler;
+import me.Samkist.bot.commands.admin.Ban;
 import me.Samkist.bot.commands.fun.Echo;
 import me.Samkist.bot.commands.fun.Ping;
 import me.Samkist.bot.utils.Config;
@@ -25,7 +26,8 @@ public class Launcher {
 
         commandHandler.addCommands(
                 new Echo(),
-                new Ping()
+                new Ping(),
+                new Ban()
         );
 
 

@@ -57,7 +57,10 @@ public class CommandHandler extends ListenerAdapter {
         }
         try {
             Optional<Command> result = commands.stream().filter(command1 -> command1.getCommand().equalsIgnoreCase(command)).findFirst();
-            result.ifPresent(value -> value.execute(args, event));
+            result.ifPresent(value -> {
+                value.execute(args, event);
+                logger.info("Command name is " + value.getCommand());
+            });
 
         } catch(NoSuchElementException ignored) {
 

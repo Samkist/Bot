@@ -14,4 +14,13 @@ public class Embeds {
         embedBuilder.setFooter("Discord Bot | Samkist");
         return embedBuilder;
     }
+
+    public static EmbedBuilder getRedEmbed(String content, @Nullable String title) {
+        EmbedBuilder embedBuilder = new EmbedBuilder();
+        embedBuilder.setDescription(content);
+        embedBuilder.setColor(Color.RED);
+        embedBuilder.setAuthor(title, null, "https://cdn.discordapp.com/avatars/133231388538306560/3da005a023dd4de2332fc07d901745b8.png");
+        embedBuilder.setFooter("Discord Bot | Samkist");
+        return embedBuilder;
+    }
 }
