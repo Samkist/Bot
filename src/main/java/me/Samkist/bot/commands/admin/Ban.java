@@ -1,5 +1,7 @@
 package me.Samkist.bot.commands.admin;
 
+import me.Samkist.bot.commands.Command;
+import me.Samkist.bot.commands.CommandCategory;
 import me.Samkist.bot.utils.Embeds;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Guild;
@@ -20,12 +22,14 @@ public class Ban extends ModerationCommand {
     String command;
     String[] aliases;
     Permission requiredPermission;
+    CommandCategory commandCategory;
 
     public Ban() {
         punishmentAction = "ban";
         command = "ban";
         aliases = new String[]{"ban"};
         requiredPermission = Permission.BAN_MEMBERS;
+        commandCategory = CommandCategory.ADMIN;
     }
 
     @Override
@@ -68,6 +72,11 @@ public class Ban extends ModerationCommand {
     @Override
     public String[] getAliases() {
         return aliases;
+    }
+
+    @Override
+    public CommandCategory getCommandCategory() {
+        return commandCategory;
     }
 
     @Override

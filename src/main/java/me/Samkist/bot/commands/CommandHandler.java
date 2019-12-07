@@ -40,26 +40,45 @@ public class CommandHandler extends ListenerAdapter {
         return this;
     }
 
+    public ArrayList<Command> getCommands() {
+        return commands;
+    }
+
+    public ArrayList<Command> getCommandByType(Command command) {
+        ArrayList<Command> results = new ArrayList<>();
+        commands.forEach(command1 -> {
+            if(command1.getClass().equals(command.getClass().asSubclass(command1.getClass())))
+                results.add(command1);
+        });
+        return results;
+    }
+
+    public ArrayList<Command> getCommandsByCategory(CommandCategory commandCategory) {
+        ArrayList<Command> results = new ArrayList<>();
+        commands.forEach(command -> {
+            if(command.getCommandCategory().equals(commandCategory))
+                results.add(command);
+        });
+        return results;
+    }
+
     @Override
     public void onMessageReceived(@NotNull MessageReceivedEvent event) {
         if(event.getMessage().getContentRaw().length() == 0)
             return;
         if(!event.isFromType(ChannelType.TEXT))
             return;
-        if (!Character.toString(event.getMessage().getContentRaw().charAt(0)).equalsIgnoreCase(Config.getPrefix()))
+        if (!Character.toString(event.getMessage().getContentRaw().charAt(0)).equalsIgnoreCase(prefix))
             return;
 
-        String msg = event.getMessage().getContentRaw().substring(1);
-        String command = msg.split(" ")[0];
-        String[] args = new String[msg.split(" ").length-1];
-        for(int i = 0; i < args.length; i++) {
-            args[i] = msg.split(" ")[i+1];
-        }
+        String[] msg = event.getMessage().getContentRaw().substring(1).split("\\s+", 2);
+        String command = msg[0];
+
+        String[] args = msg.length > 1 ? msg[1].split("\\s+") : null;
         try {
             Optional<Command> result = commands.stream().filter(command1 -> command1.getCommand().equalsIgnoreCase(command)).findFirst();
             result.ifPresent(value -> {
                 value.execute(args, event);
-                logger.info("Command name is " + value.getCommand());
             });
 
         } catch(NoSuchElementException ignored) {

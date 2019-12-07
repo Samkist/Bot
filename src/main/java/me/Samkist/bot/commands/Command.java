@@ -13,5 +13,7 @@ public abstract class Command {
 
     public abstract String getUsage();
 
+    public abstract CommandCategory getCommandCategory();
+
     public abstract void execute(String[] args, MessageReceivedEvent event);
 }

@@ -1,6 +1,7 @@
 package me.Samkist.bot.commands.fun;
 
 import me.Samkist.bot.commands.Command;
+import me.Samkist.bot.commands.CommandCategory;
 import me.Samkist.bot.utils.Embeds;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.MessageChannel;
@@ -16,11 +17,13 @@ public class Echo extends Command {
     private String command;
     private String[] aliases;
     private String usage;
+    private CommandCategory commandCategory;
 
     public Echo() {
         command = "echo";
         aliases = new String[]{"repeat"};
         usage = "This command will echo what is entered.";
+        commandCategory = CommandCategory.FUN;
     }
 
     @Override
@@ -36,6 +39,11 @@ public class Echo extends Command {
     @Override
     public String getUsage() {
         return usage;
+    }
+
+    @Override
+    public CommandCategory getCommandCategory() {
+        return commandCategory;
     }
 
     private void execute(String[] args, MessageChannel channel, User author, Message message) {
