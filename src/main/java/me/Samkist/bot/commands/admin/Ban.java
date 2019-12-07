@@ -59,8 +59,13 @@ public class Ban extends ModerationCommand {
         for(int i = delDays ? 1 : 3; i < args.length; i++)
             stringBuilder.append(args[i]).append(" ");
         int finalDays = days;
-        Consumer<Void> success = (ban) -> event.getTextChannel().sendMessage(Embeds.getRedEmbed(member.getAsMention() + " has been banned for " + stringBuilder.toString() + "and their messages from the past " + finalDays + " days have been deleted", "User Banned").build()).queue();
-        guild.ban(member, days, stringBuilder.toString()).queue(success);
+        if(delDays) {
+            Consumer<Void> success = (ban) -> event.getTextChannel().sendMessage(Embeds.getRedEmbed(member.getAsMention() + " has been banned for " + stringBuilder.toString() + "and their messages from the past " + finalDays + " days have been deleted", "User Banned").build()).queue();
+            guild.ban(member, days, stringBuilder.toString()).queue(success);
+        } else {
+            Consumer<Void> success = (ban) -> event.getTextChannel().sendMessage(Embeds.getRedEmbed(member.getAsMention() + " has been banned for " + stringBuilder.toString(), "User Banned").build()).queue();
+            guild.ban(member, 0, stringBuilder.toString()).queue(success);
+        }
         return true;
     }
 
