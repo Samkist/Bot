@@ -4,6 +4,7 @@ import me.Samkist.bot.commands.CommandHandler;
 import me.Samkist.bot.commands.admin.Ban;
 import me.Samkist.bot.commands.admin.Settings;
 import me.Samkist.bot.commands.fun.Echo;
+import me.Samkist.bot.commands.fun.GIF;
 import me.Samkist.bot.commands.fun.Ping;
 import me.Samkist.bot.commands.util.Help;
 import me.Samkist.bot.utils.Config;
@@ -32,7 +33,8 @@ public class Launcher {
                 new Ping(),
                 new Ban(),
                 new Settings(),
-                new Help()
+                new Help(),
+                new GIF()
         );
 
 

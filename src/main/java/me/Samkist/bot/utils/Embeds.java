@@ -6,7 +6,7 @@ import javax.annotation.Nullable;
 import java.awt.*;
 
 public class Embeds {
-    public static EmbedBuilder getDefaultEmbed(String content, @Nullable String title) {
+    public static EmbedBuilder getDefaultEmbed(@Nullable String content, @Nullable String title) {
         EmbedBuilder embedBuilder = new EmbedBuilder();
         embedBuilder.setDescription(content);
         embedBuilder.setColor(new Color(0, 255, 128));

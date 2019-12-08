@@ -48,6 +48,10 @@ public class Config {
         return list.get(2);
     }
 
+    public static String getGiphyAPIKey() throws IndexOutOfBoundsException {
+        return list.get(3);
+    }
+
     public static Path getFilePath() {
         return filePath;
     }
