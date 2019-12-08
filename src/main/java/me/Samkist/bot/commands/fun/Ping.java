@@ -2,12 +2,14 @@ package me.Samkist.bot.commands.fun;
 
 import me.Samkist.bot.commands.Command;
 import me.Samkist.bot.commands.CommandCategory;
+import me.Samkist.bot.commands.meta.CommandArgument;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.MessageBuilder;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 public class Ping extends Command {
@@ -16,11 +18,13 @@ public class Ping extends Command {
     private String[] aliases;
     private String usage;
     private CommandCategory commandCategory;
+    private String description;
 
     public Ping() {
         command = "ping";
         aliases = new String[]{};
-        usage = "Retrieves the ping of the shard";
+        description = "Retrieves the ping of the shard";
+        usage = "`<message>`";
         commandCategory = CommandCategory.FUN;
     }
 
@@ -52,6 +56,16 @@ public class Ping extends Command {
     @Override
     public CommandCategory getCommandCategory() {
         return commandCategory;
+    }
+
+    @Override
+    public ArrayList<CommandArgument> getCommandArguments() {
+        return null;
+    }
+
+    @Override
+    public String getDescription() {
+        return null;
     }
 
     @Override

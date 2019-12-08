@@ -2,6 +2,7 @@ package me.Samkist.bot.commands.util;
 
 import me.Samkist.bot.commands.Command;
 import me.Samkist.bot.commands.CommandCategory;
+import me.Samkist.bot.commands.meta.CommandArgument;
 import me.Samkist.bot.main.Launcher;
 import me.Samkist.bot.utils.Config;
 import me.Samkist.bot.utils.Embeds;
@@ -42,6 +43,16 @@ public class Help extends Command {
     @Override
     public CommandCategory getCommandCategory() {
         return commandCategory;
+    }
+
+    @Override
+    public ArrayList<CommandArgument> getCommandArguments() {
+        return null;
+    }
+
+    @Override
+    public String getDescription() {
+        return null;
     }
 
     @Override

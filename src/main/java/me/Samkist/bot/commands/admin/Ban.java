@@ -2,6 +2,7 @@ package me.Samkist.bot.commands.admin;
 
 import me.Samkist.bot.commands.Command;
 import me.Samkist.bot.commands.CommandCategory;
+import me.Samkist.bot.commands.meta.CommandArgument;
 import me.Samkist.bot.utils.Embeds;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Guild;
@@ -12,6 +13,7 @@ import net.dv8tion.jda.internal.utils.PermissionUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
 import java.util.function.Consumer;
 
 public class Ban extends ModerationCommand {
@@ -82,6 +84,16 @@ public class Ban extends ModerationCommand {
     @Override
     public CommandCategory getCommandCategory() {
         return commandCategory;
+    }
+
+    @Override
+    public ArrayList<CommandArgument> getCommandArguments() {
+        return null;
+    }
+
+    @Override
+    public String getDescription() {
+        return null;
     }
 
     @Override

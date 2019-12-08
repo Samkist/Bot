@@ -56,6 +56,16 @@ public class GIF extends Command {
     }
 
     @Override
+    public ArrayList<CommandArgument> getCommandArguments() {
+        return null;
+    }
+
+    @Override
+    public String getDescription() {
+        return null;
+    }
+
+    @Override
     public void execute(String[] args, MessageReceivedEvent event) {
         SimpleGiphy.setApiKey(Config.getGiphyAPIKey());
         try {

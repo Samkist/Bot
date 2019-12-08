@@ -3,13 +3,14 @@ package me.Samkist.bot.commands.meta;
 import me.Samkist.bot.commands.Command;
 import me.Samkist.bot.utils.Config;
 
+import java.util.PriorityQueue;
 import java.util.Queue;
 
 public class CommandArgument {
     private String argument;
     private String usage;
     private Command parentCommand;
-    private Queue<CommandArgument> parentArguments;
+    private Queue<CommandArgument> parentArguments = new PriorityQueue<>();
 
     public CommandArgument(String argument, String usage, Command parentCommand) {
         this.argument = argument;
