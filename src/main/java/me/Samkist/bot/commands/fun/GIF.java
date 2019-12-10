@@ -115,6 +115,7 @@ public class GIF extends Command {
                         Embeds.getDefaultEmbed(null, "Search Result - " + stringBuilder1.toString())
                             .setImage(response3.getImages().getOriginal().getUrl()).build()
                 ).queue();
+                break;
             case "trending":
                 GiphyListResponse response4 = SimpleGiphy.getInstance().trending("50", "pg-13");
                 List<Giphy> responseList1 = response4.getData();
@@ -125,6 +126,7 @@ public class GIF extends Command {
                         Embeds.getDefaultEmbed(null, "Random Trending GIF From Top 50")
                                 .setImage(response5.getImages().getOriginal().getUrl()).build()
                 ).queue();
+                break;
             default:
         }
     }
